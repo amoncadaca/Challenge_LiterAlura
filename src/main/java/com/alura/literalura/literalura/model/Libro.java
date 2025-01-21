@@ -10,13 +10,16 @@ public class Libro {
     private Long id;
 
     private String titulo;
-    private String idioma;
+
+    @Enumerated(EnumType.STRING)
+    private Language idioma;
+
     private int descargas;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Autor autor;
 
-    public Libro(Long id, String titulo, String idioma, int descargas, Autor autor) {
+    public Libro(Long id, String titulo, Language idioma, int descargas, Autor autor) {
         this.id = id;
         this.titulo = titulo;
         this.idioma = idioma;
@@ -40,11 +43,11 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public String getIdioma() {
+    public Language getIdioma() {
         return idioma;
     }
 
-    public void setIdioma(String idioma) {
+    public void setIdioma(Language idioma) {
         this.idioma = idioma;
     }
 
@@ -63,5 +66,4 @@ public class Libro {
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
-
 }

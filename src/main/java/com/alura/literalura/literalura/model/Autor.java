@@ -1,11 +1,12 @@
 package com.alura.literalura.literalura.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 @Entity
+@Table(name = "autores")
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +16,15 @@ public class Autor {
     private Integer anioNacimiento;
     private Integer anioFallecimiento;
 
-    public Autor(Long id, String nombre, Integer anioNacimiento, Integer anioFallecimiento) {
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Libro> libros;
+
+    public Autor(Long id, String nombre, Integer anioNacimiento, Integer anioFallecimiento, List<Libro> libros) {
         this.id = id;
         this.nombre = nombre;
         this.anioNacimiento = anioNacimiento;
         this.anioFallecimiento = anioFallecimiento;
+        this.libros = libros;
     }
 
     public Long getId() {
@@ -53,5 +58,22 @@ public class Autor {
     public void setAnioFallecimiento(Integer anioFallecimiento) {
         this.anioFallecimiento = anioFallecimiento;
     }
+
+    public List<Libro> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
+    }
+
+    @Override
+    public String toString() {
+        return "Autor: " + nombre + "\n" +
+                "Fecha de nacimiento: " + anioNacimiento + "\n" +
+                "Fecha de fallecimiento: " + (anioFallecimiento != null ? anioFallecimiento : "Desconocido") + "\n" +
+                "Libros: " + (libros != null ? libros.size() : "Sin libros registrados");
+    }
+
 }
 
