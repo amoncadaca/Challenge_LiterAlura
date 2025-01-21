@@ -1,4 +1,4 @@
-# Literalura
+# Challenge LiterAlura
 
 Este proyecto, **Literalura**, es una aplicación basada en Java con Spring Boot para gestionar un catálogo de libros. La aplicación permite buscar libros mediante una API externa, almacenarlos en una base de datos PostgreSQL y realizar consultas interactivas desde la consola.
 
