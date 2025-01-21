@@ -85,7 +85,7 @@ src/main/java/com/alura/literalura
 │   ├── AutorDTO.java
 │   ├── LibroDTO.java
 │   └── EstadisticaDTO.java
-├── entity
+├── model
 │   ├── Autor.java
 │   └── Libro.java
 ├── repository
